@@ -9,7 +9,22 @@ function love.load()
     map.start_fill = 50         -- the chance that a cell will be initially filled
     map.cells = {}
 
-    --randomly fill in the map based on the map.start_fill chance
+    init_map()
+end
+
+function love.keyreleased(key)
+    if key == "escape" then
+        love.event.quit()
+    end
+    if key == "p" then
+        map_pass()
+    end
+    if key == "n" then
+        init_map()
+    end
+end
+
+function init_map()
     i, j = 1
     for i = 1, map.width do
         map.cells[i] = {}
@@ -27,15 +42,7 @@ function love.load()
             end
         end
     end
-end
 
-function love.keyreleased(key)
-    if key == "escape" then
-        love.event.quit()
-    end
-    if key == "p" then
-        map_pass()
-    end
 end
 
 function map_pass()
