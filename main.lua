@@ -7,6 +7,8 @@ function love.load()
     map.height = 64             -- number of cells in height
     map.cell_size = 8           -- size of the cell in pixels
     map.start_fill = 50         -- the chance that a cell will be initially filled
+    map.deathrate = 4     
+    map.birthrate = 6
     map.cells = {}
 
     init_map()
@@ -73,13 +75,13 @@ function map_pass()
 
             --now check
             if map.cells[i][j] == 1 then
-                if wallcounter >= 4 then
+                if wallcounter >= map.deathrate then
                     temp_map[i][j] = 1
                 else    
                     temp_map[i][j] = 0
                 end
             else
-                if wallcounter >= 6 then
+                if wallcounter >= map.birthrate then
                     temp_map[i][j] = 1
                 else    
                     temp_map[i][j] = 0
