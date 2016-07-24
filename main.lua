@@ -3,12 +3,12 @@
 function love.load()
     --the map of cells
     map = {}
-    map.width = 64              -- number of cells in width
-    map.height = 64             -- number of cells in height
-    map.cell_size = 8           -- size of the cell in pixels
-    map.start_fill = 50         -- the chance that a cell will be initially filled
-    map.deathrate = 4     
-    map.birthrate = 6
+    map.width = 800              -- number of cells in width
+    map.height = 600             -- number of cells in height
+    map.cell_size = 1           -- size of the cell in pixels
+    map.start_fill = 51         -- the chance that a cell will be initially filled
+    map.deathrate = 5           -- how many empty cells around a live cell
+    map.birthrate = 6           -- how many live cells around a empty cell
     map.cells = {}
 
     init_map()
@@ -75,16 +75,12 @@ function map_pass()
 
             --now check
             if map.cells[i][j] == 1 then
-                if wallcounter >= map.deathrate then
-                    temp_map[i][j] = 1
-                else    
+                if 8-wallcounter >= map.deathrate then
                     temp_map[i][j] = 0
                 end
             else
                 if wallcounter >= map.birthrate then
                     temp_map[i][j] = 1
-                else    
-                    temp_map[i][j] = 0
                 end                
             end
         end
